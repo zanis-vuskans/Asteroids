@@ -8,6 +8,12 @@ PLAYER_COLOR = (255, 255, 255) # the color of the player's ship
 PLAYER_TURN_SPEED = 300 # represent the player's turn speed
 PLAYER_SPEED = 200 # represent the player's speed
 
+SHOT_RADIUS = 5 # the radius of the player's shots
+SHOT_COLOR = (255, 255, 0) # the color of the player's shots
+SHOT_LINE_WIDTH = 1 # the width of the lines that draw the shots
+PLAYER_SHOOT_SPEED = 500 # the speed at which the player shoots
+PLAYER_SHOOT_COOLDOWN_SECONDS = 0.3 # the cooldown time between shots
+
 #asteroid constants
 ASTEROID_COLOR = (255, 0, 0) # the color of the asteroid
 ASTEROID_LINE_WIDTH = 2 # the width of the lines that draw the asteroid
