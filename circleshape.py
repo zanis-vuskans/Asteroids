@@ -1,20 +1,33 @@
 import pygame
-
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
-    containers: tuple[pygame.sprite.Group, ...]
-
-    def __init__(self, x: float, y: float, radius: float) -> None:
-        # we will be using this later
+    def __init__(self, x, y, radius):
         if hasattr(self, "containers"):
-            super().__init__(*self.containers)
+            super().__init__(self.containers)
         else:
             super().__init__()
 
-        self.position: pygame.Vector2 = pygame.Vector2(x, y)
+        self.position = pygame.Vector2(x, y)
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
+
+    def wrap(self, margin=None):
+        #"""Teleport to the opposite edge once fully off-screen."""
+        if margin is None:
+            margin = self.radius
+
+        if self.position.x < -margin:
+            self.position.x = SCREEN_WIDTH + margin
+        elif self.position.x > SCREEN_WIDTH + margin:
+            self.position.x = -margin
+
+        if self.position.y < -margin:
+            self.position.y = SCREEN_HEIGHT + margin
+        elif self.position.y > SCREEN_HEIGHT + margin:
+            self.position.y = -margin
+
 
     def draw(self, screen: pygame.Surface) -> None:
         # must override
